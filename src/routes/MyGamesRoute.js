@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { Container, ListGroup, ListGroupItem } from 'reactstrap';
-import getCurrentUserGames from '../use_cases/getCurrentUserGames';
-import { Redirect } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+import getCurrentUserGames from "../use_cases/getCurrentUserGames";
+import { Redirect } from "react-router-dom";
 
 const MyGamesRoute = () => {
   const [games, setGames] = useState([]);
@@ -16,33 +21,41 @@ const MyGamesRoute = () => {
     return <Redirect to={redirectUrl} />;
   } else {
     return (
-      <Container style={{maxWidth: "500px"}}>
-        <h1>Your Games</h1>
-        <ListGroup>
-          {
-            games.map(game => (
+      <div>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <a href="#">Bosh sahifa</a>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>Testlar</BreadcrumbItem>
+        </Breadcrumb>
+        <Container style={{ maxWidth: "500px" }}>
+          <div className="content-center">
+            <h1 className="text-red">Testlar ro'yhati</h1>
+            <ListGroup>
+              {games.map((game) => (
+                <ListGroupItem
+                  key={game.id}
+                  onClick={() => setRedirectUrl(`/games/${game.id}`)}
+                  tag="button"
+                  action
+                >
+                  {game.name}
+                </ListGroupItem>
+              ))}
               <ListGroupItem
-                key={game.id}
-                onClick={() => setRedirectUrl(`/games/${game.id}`)}
+                onClick={() => setRedirectUrl("/games/create")}
                 tag="button"
+                color="info"
                 action
               >
-                {game.name}
+                Yangi test yaratish
               </ListGroupItem>
-            ))
-          }
-          <ListGroupItem
-            onClick={() => setRedirectUrl('/games/create')}
-            tag="button"
-            color="info"
-            action
-          >
-            Create Game
-          </ListGroupItem>
-        </ListGroup>
-      </Container>
-    )
+            </ListGroup>
+          </div>
+        </Container>
+      </div>
+    );
   }
-}
+};
 
-export default MyGamesRoute
+export default MyGamesRoute;

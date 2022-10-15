@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -38,5 +40,45 @@ html, body, #root {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.content-center {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-details {
+  margin: 10rem 0;
+}
+
+.question-badge {
+  text-align: left;
+  margin: -10px 0;
+}
+
+@media (max-width: 768px) {
+  .content-center {
+    height: auto;
+    justify-content: start;
+    margin: 5rem 0;
+  }
+
+  .game-details {
+    margin: 5rem 0;
+  }
+}
+
+@media (max-width: 556px) {
+  .content-center {
+    height: auto;
+    justify-content: start;
+    margin: 3rem 0;
+  }
+
+  .game-details {
+    margin: 3rem 0;
   }
 }
